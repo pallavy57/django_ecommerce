@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title> Django Sample Site - {% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <!-- {'image': 'https://res.cloudinary.com/dh30ib2eg/image/upload/v1707031353/mrgmnxp14ya4feln5yaj.jpg', 'id': 2, 'name': 'product2 ', 'description': 'product2 ', 'sku': 'ABC-123451-S-BL ', 'price': 35, 'modified_at': datetime.datetime(2024, 2, 4, 13, 21, 50, 773649), 'cat_name': 'pets ', 'stock': 3444, 'discount_package': 'discount 2 ', 'discount_percent': '15 '} -->
+    <div class="cards-container-one">
+        <!-- {{product.stock}} -->
+        <div class="row ">
+            <div class="col custom_div_03">
+                <img src={{product.image}} alt={{product.name}} class="product_image-01">
+                <img src={{product.image}} alt={{product.name}} class="product_image">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col custom_div">
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h4 class="name_p">{{product.name}}</h4>
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class=" size_font green_flag"> {{product.price}} $ <small class="red_flag">-
+                                {{product.discount_percent}} %</small>
+
+                        </span>
+                        <p>Inclusive of all taxes</p>
+
+                    </li>
+                    <li class="list-group-item">
+                        <div> <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <div>
+                            Total xyz Ratings
+                        </div>
+
+                    </li>
+
+                    <li class="list-group-item">
+                        <h4>Offers</h4>
+                    </li>
+                    <li class="list-group-item">
+
+                        <div class="carousel">
+                            <button class='flt-left' id="clickleft" ><i class="fa fa-angle-left"
+                                    aria-hidden="true"></i></button>
+                            <div class="row_01">
+
+                                <div class="row-container">
+                                    <div class="container_01">
+                                        <img class="image_holder"
+                                            src="https://m.media-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/icon-returns._CB484059092_.png" />
+                                    </div>
+                                    <div class="container_01">
+                                        <img class="image_holder"
+                                            src="https://m.media-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/icon-top-brand._CB617044271_.png" />
+                                    </div>
+                                    <div class="container_01">
+                                        <img class="image_holder"
+                                            src="https://m.media-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/trust_icon_free_shipping_81px._CB630870460_.png" />
+                                    </div>
+                                    <div class="container_01">
+                                        <img class="image_holder"
+                                            src="https://m.media-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/icon-amazon-delivered._CB485933725_.png" />
+                                    </div>
+                                    <div class="container_01">
+                                        <img class="image_holder"
+                                            src="https://m.media-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/icon-cod._CB485937110_.png" />
+                                    </div>
+
+                                    <div class="clear"></div>
+                                </div>
+
+                            </div>
+                            <button class='flt-left' id="clickright"><i class="fa fa-angle-right"
+                                    aria-hidden="true"></i></button>
+                            <div class="clear"></div>
+                            </div>
+
+                    </li>
+                    <li class="list-group-item">
+                        <h4>About this Item</h4>
+                        <p class="desc">{{product.description}}</p>
+                    </li>
+                </ul>
+
+
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{product.price}} $</li>
+                        {% if product.stock != 0 %}
+                        <li class="list-group-item green_flag">
+                            <bold>In Stock - {{product.stock}} Left</bold>
+                        </li>
+                        {% else %}
+                        <li class="list-group-item red_flag">Out of Stock</li>
+                        {% endif %}
+                        <li class="list-group-item">
+                            <div class="add_to_cart">
+                                <label for="quantity">Quantity:</label>
+                                <select name="quantity" id="quantity">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                </select>
+                            </div>
+                            <div class="add_to_cart">
+                                <button type="button" class="btn btn-warning">Add To Cart</button>
+                                <button type="button" class="btn btn-dark">Buy Now</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

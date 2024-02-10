@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <title> Django Sample Site - {% block title %}{% endblock %}</title>
+</head>
+
+
+<body>
+    {% include 'header.html' %}
+    <div class="container-fluid ">
+        <div class="row mx-auto align-bottom custom-form">
+            <div class="col-sm">
+                One of three columns
+            </div>
+            <div class="col-sm ">
+                <form id="login_form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="inputEmail6" aria-describedby="emailHelp"
+                            placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="inputPassword6" placeholder="Password">
+                    </div>
+                    <div class="form-group form-check">
+                        <a href="{% url 'signup' %}">Dont have Account Create</a>
+                    </div>
+
+                    <a href="{% url 'products' %}" id='b2' class="btn btn-primary">Submit</a>
+     
+
+                    
+                    <div id=t2></div>
+                </form>
+            </div>
+            <div class="col-sm">
+                One of three columns
+            </div>
+        </div>
+        
+
+    </div>
+
+    <!-- <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+        
+    </form> -->
+</body>
+
+</html>

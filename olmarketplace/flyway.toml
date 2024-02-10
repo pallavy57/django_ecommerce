@@ -1,0 +1,27 @@
+databaseType = "PostgreSql"
+id = "21d1ff62-355a-4694-b39b-a9b8cbe967c4"
+name = "olmarketplace"
+
+[flyway]
+locations = [ "filesystem:migrations" ]
+mixed = true
+outOfOrder = true
+validateMigrationNaming = true
+
+  [flyway.check]
+  majorTolerance = 0
+
+[flywayDesktop]
+developmentEnvironment = "development"
+schemaModel = "schema-model"
+shadowEnvironment = "shadow"
+
+[redgateCompare]
+filterFile = "filter.rgf"
+
+[redgateCompare.postgresql.options.ignores]
+ignoreNewlinesInTextObjects = "off"
+
+[environments.olmarketplace]
+url = "jdbc:postgresql://localhost:5432/olmarketplace"
+schemas = [ "orders", "users_management" ]
