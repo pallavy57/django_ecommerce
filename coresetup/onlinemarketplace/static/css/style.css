@@ -11,6 +11,7 @@
     padding: 2%;
     justify-content: space-between;
 }
+
 .card {
     position: relative;
     width: 320px;
@@ -20,6 +21,7 @@
     overflow: hidden;
     margin-top: 20px;
 }
+
 div.price {
     font-size: 8px;
 }
@@ -33,6 +35,7 @@ div.price {
     transition: 0.5s;
     max-height: 190px;
 }
+
 .card::before {
     content: "";
     position: absolute;
@@ -129,6 +132,7 @@ img.product_image {
     width: 600px;
     height: 900px;
 }
+
 img.product_image-01 {
     width: 100px;
     height: 100px;
@@ -140,44 +144,47 @@ p.desc {
     width: 400px;
 }
 
-.cards-container-one{
+.cards-container-one {
     display: flex;
     padding: 2%;
     justify-content: space-around
 }
-.name_p{
-    width: 400px 
+
+.name_p {
+    width: 400px
 }
+
 .col.custom_div {
     position: relative;
     left: -10px;
 }
 
-.custom_div_03{
+.custom_div_03 {
     position: relative;
-    left: -20px; 
+    left: -20px;
 }
 
-.red_flag{
+.red_flag {
     color: red;
     font-weight: bolder;
 }
 
-.green_flag{
+.green_flag {
     color: rgb(40, 190, 63);
     font-weight: bolder;
 }
-select{
-   
-    padding: 10px 20px;
-    border-radius:5px;
-  }
-  
-  select:focus{
-    outline:none;
-  }
 
-  .add_to_cart {
+select {
+
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+select:focus {
+    outline: none;
+}
+
+.add_to_cart {
     margin: 8px;
 }
 
@@ -185,40 +192,163 @@ span.size_font.green_flag {
     font-size: 2rem;
 }
 
-  .carousel {
+.carousel {
     display: flex;
     /* margin: auto; */
 }
-  .row_01{
-    width:90%;
-    padding:0;
-    overflow:hidden;
-    margin:auto;
-  }
-  .row-container{
-    margin:0 -450px;
-    transition:0.5s;
-  }
-  .container_01{
-    float:left;
-    display:inline;
-    margin:0 30px;
-  }
-  .clear{
-    clear:both;
-  }
-  .controls{
-    
-    margin:auto;
-  }
-  .flt-left{
-    border:none;
-    padding:10px 20px;
-    color:white;
-    background:#21252b;
-    font-weight:bold;
-    outline:none;
-    border-radius:3px;
-    position:relative;
-  }
-  
+
+.row_01 {
+    width: 90%;
+    padding: 0;
+    overflow: hidden;
+    margin: auto;
+}
+
+.row-container {
+    margin: 0 -450px;
+    transition: 0.5s;
+}
+
+.container_01 {
+    float: left;
+    display: inline;
+    margin: 0 30px;
+}
+
+.clear {
+    clear: both;
+}
+
+.controls {
+
+    margin: auto;
+}
+
+.flt-left {
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    background: #21252b;
+    font-weight: bold;
+    outline: none;
+    border-radius: 3px;
+    position: relative;
+}
+
+.cards-container-two {
+    display: flex;
+    padding: 10%;
+    justify-content: space-around
+}
+
+button {
+    background-color: transparent;
+    border: none;
+}
+
+.fa-heart {
+    font-size: 25px;
+
+}
+
+.blank {
+    color: #142034;
+}
+
+.red {
+    color: red;
+}
+
+.fa {
+    font-size: 25px;
+}
+
+.checked {
+    color: orange;
+}
+
+/* Three column layout */
+.side {
+    float: left;
+    width: 15%;
+    margin-top: 10px;
+}
+
+.middle {
+    margin-top: 10px;
+    float: left;
+    width: 70%;
+}
+
+/* Place text to the right */
+.right {
+    text-align: right;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* The bar container */
+.bar-container {
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+    color: white;
+}
+
+
+
+
+.ratingBar {
+    height: 18px;
+    margin: 4px;
+}
+div#percentage {
+    /* width: 100%; */
+    font-size: 13px;
+}
+#ratingBar1 {
+    background-color: #ff6f31;
+    /* width: 100px; */
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+}
+
+#ratingBar2 {
+    background-color: #ff9f02;
+    /* width: 100px; */
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+}
+
+#ratingBar3 {
+    background-color: #00bcd4;
+    /* width: 100px; */
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+}
+
+#ratingBar4 {
+    background-color: #04AA6D;
+    /* width: 100px; */
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+}
+
+#ratingBar5 {
+    background-color: #2196F3;
+    /* width: 100px; */
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+}
+.total{
+    display: flex;
+}
+
+h3.ratings {
+    margin-left: 290px;
+}

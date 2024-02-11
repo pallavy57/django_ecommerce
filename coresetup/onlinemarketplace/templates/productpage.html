@@ -8,14 +8,15 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
     <script src="{% static 'js/script.js' %}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <title> Django Sample Site - {% block title %}{% endblock %}</title>
 </head>
 
 <body>
-    {% include 'header.html' %}
-    <!-- {'image': 'https://res.cloudinary.com/dh30ib2eg/image/upload/v1707031353/mrgmnxp14ya4feln5yaj.jpg', 'id': 2, 'name': 'product2 ', 'description': 'product2 ', 'sku': 'ABC-123451-S-BL ', 'price': 35, 'modified_at': datetime.datetime(2024, 2, 4, 13, 21, 50, 773649), 'cat_name': 'pets ', 'stock': 3444, 'discount_package': 'discount 2 ', 'discount_percent': '15 '} -->
+
+
     <div class="cards-container-one">
         <!-- {{product.stock}} -->
         <div class="row ">
@@ -59,7 +60,7 @@
                     <li class="list-group-item">
 
                         <div class="carousel">
-                            <button class='flt-left' id="clickleft" ><i class="fa fa-angle-left"
+                            <button class='flt-left' id="clickleft"><i class="fa fa-angle-left"
                                     aria-hidden="true"></i></button>
                             <div class="row_01">
 
@@ -92,7 +93,7 @@
                             <button class='flt-left' id="clickright"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></button>
                             <div class="clear"></div>
-                            </div>
+                        </div>
 
                     </li>
                     <li class="list-group-item">
@@ -167,6 +168,145 @@
         </div>
 
     </div>
+    <h3 class="ratings">Recommending Products with similiar Ratings </h3>
+    <div class="cards-container-two">
+        <div class="cards-container">
+            
+            {% for dict_item in recommendedProductonRatings %}
+            <!-- {{dict_item}} -->
+            <a href="{% url 'productpage' id=dict_item.id userId=userId %}" data-item-id="{{dict_item.id}}">
+                <div class="card">
+
+                    <div class="imgBx">
+                        <img src={{dict_item.image}} alt={{dict_item.name}}>
+                    </div>
+                    <div class="contextBx">
+                        <h3>{{dict_item.name}}</h3>
+                        <h3 class="p">{{dict_item.price}} $ </h3>
+                        <p class="p"><small>{{dict_item.stock}} Left</small></p>
+                        <div class="price">Upto {{dict_item.discount_percent}} % off | {{dict_item.cat_name}}</div>
+                        <a class="buy">AddToCart</a>
+                    </div>
+                </div>
+            </a>
+
+
+            {% endfor %}
+        </div>
+    </div>
+    <div class="cards-container-two">Customers frequently viewed</div>
+    <div class="cards-container-two">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <h3>Looking for specific info?</h3>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </li>
+
+            <li class="list-group-item">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <h3>Customer Reviews</h3>
+                                    <div>
+
+                                        <span class="heading">User Rating</span>
+
+                                        <span class="fa fa-star {% if avarage_ratings > 0 %} checked {% endif %}"
+                                            id="st1"></span>
+                                        <span class="fa fa-star {% if avarage_ratings > 1 %} checked {% endif %}"
+                                            id="st2"></span>
+                                        <span class="fa fa-star {% if avarage_ratings > 2 %} checked {% endif %}"
+                                            id="st3"></span>
+                                        <span class="fa fa-star {% if avarage_ratings > 3 %} checked {% endif %}"
+                                            id="st4"></span>
+                                        <span class="fa fa-star {% if avarage_ratings > 4 %} checked {% endif %} "
+                                            id="st5"></span>
+
+                                        <p>{{avarage_ratings }} average based on {{comments|length}} reviews.</p>
+                                        <hr style="border:3px solid #f1f1f1">
+                                        <div class="total">
+                                            <div id="desc5"></div>
+                                            <div id="ratingBar5" class="ratingBar"></div>
+                                            <div id="percentage">5 Stars Ratings</div>
+                                        </div>
+                                        <div class="total">
+                                            <div id="desc4"></div>
+                                            <div id="ratingBar4" class="ratingBar"></div>
+                                            <div id="percentage">4 Stars Ratings</div>
+                                        </div>
+
+                                        <div class="total">
+                                            <div id="desc3"></div>
+                                            <div id="ratingBar3" class="ratingBar"></div>
+                                            <div id="percentage">3 Stars Ratings</div>
+                                        </div>
+                                        <div class="total">
+                                            <div id="desc2"></div>
+                                            <div id="ratingBar2" class="ratingBar"></div>
+                                            <div id="percentage">2 Stars Ratings</div>
+                                        </div>
+                                        <div class="total">
+                                            <div id="desc1"></div>
+                                            <div id="ratingBar1" class="ratingBar"></div>
+                                            <div id="percentage">1 Stars Ratings</div>
+                                        </div>
+
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-8">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <h3>Customers Say</h3>
+                                </li>
+                                {% for dict_item in comments %}
+                                <li class="list-group-item">
+                                    <p>
+                                        <bold>{{dict_item.name}}</bold>
+                                        {% if dict_item.review == 1 %}
+                                        <span class="red_flag">Very Poor</span>
+                                        {% elif dict_item.review == 2 %}
+                                        <span class="red_flag"> Poor</span>
+                                        {% elif dict_item.review == 3 %}
+                                        <span class="green_flag">Average</span>
+                                        {% elif dict_item.review == 4 %}
+                                        <span class="green_flag">Good</span>
+                                        {% else %}
+                                        <span class="green_flag">Very Good</span>
+                                        {% endif %}
+                                    </p>
+                                    <p>{{dict_item.text}}</p>
+                                    <div>
+                                        <i id={{dict_item.id}} class="fa-regular fa-heart blank">
+                                        </i>
+                                        <span class="green_flag"> {{dict_item.likes}}</span>
+
+                                    </div>
+
+                                </li>
+                                {% endfor %}
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+    <script>
+        const comments = '{{ reviewArray }}'
+    </script>
+    <script type="text/javascript" src="{% static 'js/products.js' %}"></script>
 
 </body>
 

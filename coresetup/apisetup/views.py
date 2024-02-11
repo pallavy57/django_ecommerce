@@ -1,8 +1,10 @@
 import json
 import os
+import pickle
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
+import numpy as np
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate, login, logout
@@ -14,7 +16,14 @@ import re
 import requests
 from django.contrib.auth.models import User
 import json
-from pandas import DataFrame
+import pandas as pd
+from nltk.stem.porter import PorterStemmer
+from nltk.corpus import stopwords
+STOPWORDS = set(stopwords.words("english"))
+# load the nlp model and tfidf vectorizer from disk
+filename = 'nlp_model.pkl'
+clf = pickle.load(open(filename, 'rb'))
+vectorizer = pickle.load(open('tranform.pkl', 'rb'))
 
 
 def validate_mobile_number(mobile_number):
@@ -58,6 +67,11 @@ def loginUser(request):
 
             request.session["access"] = r.json()["access"]
             request.session["refresh"] = r.json()["refresh"]
+            get_user = '''select id from users_management.users where email = %s'''
+            cursor2 = connection.cursor()
+            cursor2.execute(get_user, (email,))
+            existing_user = cursor2.fetchone()
+            request.session["existing_user"] = existing_user[0]
             return JsonResponse({"access": r.json()["access"], "refresh": r.json()["refresh"]}, status=200)
         else:
             return JsonResponse({"resp": "Bad Request! You Dont Exists In the data base, please register"}, status=400)
@@ -129,7 +143,7 @@ def user_logout(request):
     return redirect('login')
 
 
-def productpage(request, id):
+def productpage(request, id, userId):
     getting_product = '''select p.image, p.id, p.name, p.description, p.sku, p.price,p.modified_at, pc."name" as cat_name, pi2.quantity as stock, d.name as discount_package, d.discount_percent 
                             from products.products p
                             inner join products.product_category pc on pc.id = p.category_id 
@@ -143,8 +157,96 @@ def productpage(request, id):
         for row in cursor.fetchall()
     ]
 
-    print(product[0])
-    return render(request, 'productpage.html', context={"product": product[0]})
+    getting_commentsAndReviews = '''select c.id, c.likes, c."text" ,c.review, u."name" 
+                            from products.products p
+                            inner join products.product_comments pc2 on pc2.product_id = p.id
+                            inner join products."comments" c on c.id = pc2.comment_id
+                            inner join users_management.users u on c.user_id = u.id
+                            where p.id =%s'''
+    cursor = connection.cursor()
+    cursor.execute(getting_commentsAndReviews, (id,))
+    columns = [col[0] for col in cursor.description]
+    comments = [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
+
+    avarage_ratings = 0
+    reviewArray = []
+    for i in comments:
+        avarage_ratings = (avarage_ratings + i["review"])/len(comments)
+        reviewArray.append(i["review"])
+    productReviews = recommendationSystem(userId)
+    favorable_rating = tuple()
+    l = list(favorable_rating)
+    for key, value in productReviews.items():
+        if value["status_analysis"] == "Good":
+            l.append(value["ratings"])
+    t = tuple(l)
+    print(t)
+    getting_recomm_on_Reviews = '''select distinct p.name, p.image, p.id, p.description, p.sku, p.price,p.modified_at, 
+                            pc2."name" as cat_name, 
+                            pi2.quantity as stock, 
+                            d.name as discount_package,
+                            d.discount_percent 
+                            from products."comments" c
+                            join products.product_comments pc on c.id = pc.comment_id
+                            join products.products p on pc.product_id = p.id
+                            join products.product_category pc2 on pc2.id = p.category_id 
+                            join products.product_inventory pi2 on pi2.id  = p.inventory_id
+                            join products.discount d  on d.id = p.discount_id
+                            where c.review in (%s)''' % ','.join(map(str, t))
+    cursor = connection.cursor()
+
+    cursor.execute(getting_recomm_on_Reviews)
+
+    columns = [col[0] for col in cursor.description]
+    recommendations = [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
+    return render(request, 'productpage.html', context={"userId": request.session.get('existing_user'), "recommendedProductonRatings": recommendations, "product": product[0], "reviewArray": reviewArray, "avarage_ratings": avarage_ratings, "comments": comments})
+
+
+def recommendationSystem(userId):
+    get_data = '''select distinct (p."name" ),c.review,  c."text" , c.likes  from users_management.users u 
+            join products."comments" c on c.user_id = u.id
+            join products.product_comments pc on pc.comment_id  = c.id
+            join products.products p on p.id = pc.product_id 
+            where u.id =%s'''
+    cursor = connection.cursor()
+    cursor.execute(get_data, (userId,))
+    columns = [col[0] for col in cursor.description]
+    dataset = [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
+    # print(dataset)
+
+# create a background task of creating this dataset when data chnages
+    df = pd.DataFrame.from_dict(dataset)
+    df.to_csv(
+        r"D:\pythoncoding\projects\onlineMarketPlace\coresetup\dataSet.csv", index=False)
+    reviews_list = []  # list of reviews
+    reviews_status = []  # list of comments (good or bad)
+    rating_list = []
+    product_review_list = []
+    for i in dataset:
+        stemmer = PorterStemmer()
+        review = re.sub("[^a-zA-Z]", " ", i["text"])
+        review = review.lower().split()
+        review = [stemmer.stem(word)
+                  for word in review if not word in STOPWORDS]
+        review = " ".join(review)
+        reviews_list.append(i["text"])
+        rating_list.append(i["review"])
+        product_review_list.append(review)
+        product_vector = vectorizer.transform(product_review_list)
+        pred = clf.predict(product_vector)
+        reviews_status.append('Good' if pred.all() else 'Bad')
+    product_reviews = {reviews_list[i]: {
+        "status_analysis": reviews_status[i], "ratings": rating_list[i]} for i in range(len(reviews_list))}
+    return product_reviews
 
 
 def clean_lists(lst_of_dicts):
@@ -296,3 +398,5 @@ def getPeopleAlsoBuyed(request):
 
 # https://github.com/Vibhu-Agarwal/Developing-an-SSO-Service-using-Django
 # https://docs.djangoproject.com/en/dev/topics/db/sql/#executing-custom-sql-directly
+# https://realpython.com/build-recommendation-engine-collaborative-filtering/#the-dataset
+# https://www.kaggle.com/code/shawamar/product-recommendation-system-for-e-commerce

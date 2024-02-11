@@ -15,10 +15,11 @@
 <body>
     {% include 'header.html' %}
     <!-- {{tokens.access}} -->
+
     <div class="cards-container">
         {% for dict_item in all_products.resp %}
         <!-- {{dict_item}} -->
-        <a href="{% url 'productpage' id=dict_item.id %}" data-item-id="{{dict_item.id}}">
+        <a href="{% url 'productpage' id=dict_item.id userId=userId %}" data-item-id="{{dict_item.id}}">
             <div class="card">
 
                 <div class="imgBx">

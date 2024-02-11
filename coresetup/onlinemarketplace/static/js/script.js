@@ -86,10 +86,10 @@ $(document).ready(function () {
     $('#b2').click(function () {
         console.log("hiiti9ng")
         loginData();
-       
+
     });
     function redirect(data) {
-       
+
         window.location = 'http://127.0.0.1:8000/wiserly/products/'
     }
     function loginData(e) {
@@ -114,10 +114,10 @@ $(document).ready(function () {
             }
         }).then(res => res.json())
             .then(data => {
-               
+
                 document.getElementById("inputEmail6").value = "";
                 document.getElementById("inputPassword6").value = "";
-             
+
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -139,55 +139,71 @@ $(document).ready(function () {
     var right = 0;
     var maxMargin;
     var jumpMargin = 150;
-    
-    function setWidth(){
-      var boxwidth = document.querySelector(".container_01").offsetWidth;
-      var displaywidth = document.querySelector(".row_01").offsetWidth;
-      var children = document.querySelectorAll(".row-container > .container_01").length;
-      var outerboxwidth = children * boxwidth + (children*5);
-      maxMargin = outerboxwidth - displaywidth;
-      console.log(maxMargin)
+
+    function setWidth() {
+        var boxwidth = document.querySelector(".container_01").offsetWidth;
+        var displaywidth = document.querySelector(".row_01").offsetWidth;
+        var children = document.querySelectorAll(".row-container > .container_01").length;
+        var outerboxwidth = children * boxwidth + (children * 5);
+        maxMargin = outerboxwidth - displaywidth;
+
     }
 
     $('#clickleft').click(function (e) {
-        
-        slideLeft(e)
-       
-    });
-    
-    function slideLeft(event){
-      var rowcont = document.querySelector(".row-container");
-      if(right <= -maxMargin){
-        event.preventDefault();
-      }
-      else{
-        right -= jumpMargin;
-      }
 
-      console.log(right <= -maxMargin, right, jumpMargin,rowcont)
-       rowcont.style.marginLeft = right+"px";
+        slideLeft(e)
+
+    });
+
+    function slideLeft(event) {
+        var rowcont = document.querySelector(".row-container");
+        if (right <= -maxMargin) {
+            event.preventDefault();
+        }
+        else {
+            right -= jumpMargin;
+        }
+
+
+        rowcont.style.marginLeft = right + "px";
     }
 
     $('#clickright').click(function (e) {
         slideRight(e)
-       
+
     });
-    
-    function slideRight(event){
-      var rowcont = document.querySelector(".row-container");
-      if(right==0){
-        event.preventDefault();
-      }
-      else if(right >= maxMargin){
-        event.preventDefault();
-      }
-      else{
-         right += jumpMargin;
-      }
-      console.log(right, jumpMargin,rowcont)
-      rowcont.style.marginLeft = right+"px";
+
+    function slideRight(event) {
+        var rowcont = document.querySelector(".row-container");
+        if (right == 0) {
+            event.preventDefault();
+        }
+        else if (right >= maxMargin) {
+            event.preventDefault();
+        }
+        else {
+            right += jumpMargin;
+        }
+        console.log(right, jumpMargin, rowcont)
+        rowcont.style.marginLeft = right + "px";
     }
-    
-    window.onload=setWidth;
+
+    window.onload = setWidth;
+
+    var count = 1;
+    var curER = "#";
+
+    while (count != 20000) {
+        $(curER + count).click({ buddy: $(curER + count) }, function (e) {
+            $(this).toggleClass("red");
+            e.data.buddy.toggleClass("fa-solid");
+            e.data.buddy.next("i").slideToggle("slow");
+            console.log(count)
+        });
+        count++;
+    }
+
+    var ratings = [1, 1];
+
 
 })
