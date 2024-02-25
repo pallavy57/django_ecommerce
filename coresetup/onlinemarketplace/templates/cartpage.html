@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+  
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+    <script src="{% static 'js/carts.js' %}"></script>
+    <title> Django Sample Site - {% block title %}{% endblock %}</title>
+</head>
+
+
+<body>
+    {% include 'header.html' %}
+   
+    <h1>Cart</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            {% for product in cartItems %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>{{ product.price }}</td>
+                </tr>
+                {% endfor %}
+      
+        </tbody>
+    </table>
+    
+    <!-- <p>Total price: {{ cart.total_price }}</p> -->
+    <!-- href="{% url 'products' %}" -->
+    <form  method="post">
+        {% csrf_token %}
+        <a  id='cart_items' class="btn btn-primary">Submit</a>
+    </form>
+
+    
+    <div class="cards-container">
+        {% for dict_item in recommendations %}
+        <!-- {{dict_item}} -->
+        <a href="{% url 'productpage' id=dict_item.id userId=dict_item.id %}" data-item-id="{{dict_item.id}}">
+            <div class="card">
+
+                <div class="imgBx">
+                    <img src={{dict_item.image}} alt={{dict_item.name}}>
+                </div>
+                <div class="contextBx">
+                    <h3>{{dict_item.name}}</h3>
+                    <h3 class="p">{{dict_item.price}} $ </h3>
+                    <p class="p"><small>{{dict_item.stock}} Left</small></p>
+                    <div class="price">Upto {{dict_item.discount_percent}} % off | {{dict_item.cat_name}}</div>
+                    <a class="buy" >AddToCart</a>
+                </div>
+            </div>
+        </a>
+
+
+        {% endfor %}
+    </div>
+    
+    
+
+</body>
+
+</html>

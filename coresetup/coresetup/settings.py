@@ -47,6 +47,8 @@ INSTALLED_APPS = [
 
 ]
 
+
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
@@ -54,6 +56,7 @@ SIMPLE_JWT = {
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+         'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.FormParser',
@@ -162,3 +165,17 @@ cloudinary.config(
   	api_key = "454965591187998",
   	api_secret = "cNeCXVRdnOqOb2UqFNnMpK8ITeA"
 )
+
+# Celery settings
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+
+
+RAZORPAY_API_KEY = 'rzp_test_VcL2xSX3roT0v0'
+RAZORPAY_API_SECRET = 'FcnEI8V2aiMIj9Qx77bMgobf'
+
+# To Enable Popus in Django or else it will block the payment popup
+SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"

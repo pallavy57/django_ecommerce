@@ -1,6 +1,10 @@
+from django.views.decorators.csrf import csrf_exempt
+from urllib import parse
+import ast
 import json
 import os
 import pickle
+import uuid
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
@@ -8,6 +12,8 @@ import numpy as np
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate, login, logout
+from coresetup.message_queue.pulsar_consumer import PulsarConsumer
+from coresetup.message_queue.pulsar_producer import PulsarProducer
 from onlinemarketplace.forms import UserCreationForm, LoginForm
 from django.db import connection
 from datetime import date
@@ -17,13 +23,29 @@ import requests
 from django.contrib.auth.models import User
 import json
 import pandas as pd
+import razorpay
+from django.conf import settings
+from django.http import JsonResponse
+from django.shortcuts import render
+from apisetup.tasks import send_feedback_email_task
 from nltk.stem.porter import PorterStemmer
 from nltk.corpus import stopwords
+from django.views.decorators.cache import cache_page
+from django.views.decorators.csrf import csrf_protect
+
+
 STOPWORDS = set(stopwords.words("english"))
 # load the nlp model and tfidf vectorizer from disk
 filename = 'nlp_model.pkl'
 clf = pickle.load(open(filename, 'rb'))
 vectorizer = pickle.load(open('tranform.pkl', 'rb'))
+
+
+def send_email(email, message):
+    print(email)
+    send_feedback_email_task.delay(
+        email, message
+    )
 
 
 def validate_mobile_number(mobile_number):
@@ -118,7 +140,10 @@ def registeruser(request):
 
             user.set_password(password)
             user.save()
-
+            # send_email(email, "Thank You For Registering")
+            send_feedback_email_task.delay(
+                email, "Thank You For Registering"
+            )
             if (user):
                 return JsonResponse({"resp": "Users Registered"}, status=200)
 
@@ -135,7 +160,16 @@ def user_signup(request):
 def user_login(request):
     return render(request, 'login.html')
 
-# logout page
+
+
+
+
+def cartpage(request):
+
+
+
+
+    return render(request, 'cartpage.html', context={"recommendations": request.session.get('recommendations'), "cartItems": request.session.get('cartItems')})
 
 
 def user_logout(request):
@@ -393,10 +427,100 @@ join orders.order_product op on op.product_id = p.id group by p."name" order by 
 
 @api_view(['POST'])
 def getPeopleAlsoBuyed(request):
-    pass
+    get_recommendations = '''select  pc."name" , p.image, p.id, p.name, p.description, p.sku, p.price, pi2.quantity as stock, d.name as discount_package, d.discount_percent 
+from products.products p,products.product_inventory pi2,products.discount d, products.product_category pc  where 
+p.id  not in (select p.id  from products.products p, orders.order_products_mapping opm 
+where CAST(opm.added_product_id AS INTEGER)  = p.id)and pi2.id  = p.inventory_id and d.id = p.discount_id and pc.id = p.category_id
+order by pc."name" '''
+    cursor = connection.cursor()
+    cursor.execute(get_recommendations)
+    columns = [col[0] for col in cursor.description]
+    lst_of_dicts = [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
+    clean_list = []
+    for diction in lst_of_dicts:
+        clean_list.append(diction)
+
+    request.session["recommendations"] = clean_list
+    return JsonResponse({"resp": clean_list}, status=200)
+
+
+@csrf_exempt
+def getCartItems(request):
+
+    userId = ast.literal_eval(request.body.decode())["userId"]
+    print(userId)
+    get_cart_items = '''select opm.qty, opm.user_id, opm.price,p."name",CAST(opm.added_product_id AS INTEGER)
+    from orders.order_products_mapping opm  
+    inner join products.products p on p.id  = CAST(opm.added_product_id AS INTEGER)
+    where opm.user_id = %s'''
+    cursor = connection.cursor()
+    cursor.execute(get_cart_items, (userId,))
+    columns = [col[0] for col in cursor.description]
+    lst_of_dicts = [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
+    clean_list = []
+    for diction in lst_of_dicts:
+        clean_list.append(diction)
+
+    request.session["cartItems"] = clean_list
+    return JsonResponse({"resp": clean_list}, status=200)
+
+
+@csrf_exempt
+def trackCartItems(request):
+    try:
+        if request.method == 'POST':
+            jsonData = ast.literal_eval(request.body.decode())["dd"]
+            jsonFormat = json.dumps(jsonData)
+            producer = PulsarProducer(
+                'pulsar://192.168.225.205:6650', "trackCartItems-01")
+            producer.send_message(jsonFormat)
+            return JsonResponse({"message": "Message Stored Successfully"})
+
+    except Exception as e:
+        print(e)
 
 
 # https://github.com/Vibhu-Agarwal/Developing-an-SSO-Service-using-Django
 # https://docs.djangoproject.com/en/dev/topics/db/sql/#executing-custom-sql-directly
 # https://realpython.com/build-recommendation-engine-collaborative-filtering/#the-dataset
 # https://www.kaggle.com/code/shawamar/product-recommendation-system-for-e-commerce
+
+
+def initiate_payment(request):
+    if request.method == "POST":
+        amount = int(request.POST["amount"]) * 100  # Amount in paise
+
+        client = razorpay.Client(
+            auth=(settings.RAZORPAY_API_KEY, settings.RAZORPAY_API_SECRET))
+
+        payment_data = {
+            "amount": amount,
+            "currency": "INR",
+            "receipt": "order_receipt",
+            "notes": {
+                "email": "user_email@example.com",
+            },
+        }
+
+        order = client.order.create(data=payment_data)
+
+        # Include key, name, description, and image in the JSON response
+        response_data = {
+            "id": order["id"],
+            "amount": order["amount"],
+            "currency": order["currency"],
+            "key": settings.RAZORPAY_API_KEY,
+            "name": "Your Company Name",
+            "description": "Payment for Your Product",
+            # Replace with your logo URL
+        }
+
+        return JsonResponse(response_data)
+
+    return render(request, "payment.html")

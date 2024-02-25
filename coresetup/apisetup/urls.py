@@ -16,5 +16,11 @@ urlpatterns = [
     path('get5MostSaledProducts/', views.get5MostSaledProducts,
          name='get5MostSaledProducts'),
     path('getMostSaledProductsCategories/', views.getMostSaledProductsCategories,
-         name='getMostSaledProductsCategories')     
+         name='getMostSaledProductsCategories'),
+    path('getPeopleAlsoBuyed/', views.getPeopleAlsoBuyed,
+         name='getPeopleAlsoBuyed'),
+    path('getCartItems/', views.getCartItems,
+         name='getCartItems'),
+    path("initiate-payment/", views.initiate_payment, name="initiate_payment"),
+    path("trackCartItems/", views.trackCartItems, name="trackCartItems")
 ]

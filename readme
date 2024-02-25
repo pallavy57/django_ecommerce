@@ -1,9 +1,18 @@
 python manage.py startapp onlinemarketplace
 python manage.py migrate
 python manage.py runserver
+python -m celery -A apisetup.tasks worker -l info
+docker run -it -p 6650:6650 -p 8080:8080 apachepulsar/pulsar:latest bin/pulsar standalone
+redis-server
 myenv\Scripts\activate
+celery -A coresetup flower
+http://localhost:5555
 1. How to redirect one page to another in dJango?
 2. What is the use of csrfmiddlewaretoken?
-
+https://medium.com/building-the-open-data-stack/implementing-ai-in-retail-with-apache-pulsar-and-apache-cassandra-ed390a53ada5
 https://fabric.inc/blog/commerce/ecommerce-database-design-example
 https://www.psycopg.org/psycopg3/docs/basic/params.html
+
+https://ankitsahay.medium.com/getting-started-with-apache-pulsar-using-python-90a9fc1d6ff7
+https://testdriven.io/blog/retrying-failed-celery-tasks/
+https://medium.com/@dharmateja.k/retrying-failed-tasks-in-django-with-celery-f2f349fab9ca#:~:text=Django%20App%20and%20Tasks%3A&text=By%20setting%20autoretry_for%3D(Exception,a%20maximum%20of%203%20times.

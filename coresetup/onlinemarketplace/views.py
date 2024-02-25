@@ -24,4 +24,15 @@ def products(request):
         'refresh'), "access": request.session.get('access')}
     print(request.session.get('existing_user'))
     return render(request, 'products.html', context={"tokens": tokens, "all_products": all_products,"userId": request.session.get('existing_user')})
-# , "userId": request.session.get('existing_user')
+
+
+
+
+def payment_success(request):
+    return render(request, "payment_success.html")
+
+def payment_failed(request):
+    return render(request, "payment_failed.html")
+
+def payment(request):
+    return render(request, "payment.html")

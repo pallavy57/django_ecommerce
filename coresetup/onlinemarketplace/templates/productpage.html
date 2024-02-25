@@ -10,12 +10,13 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/carts.js' %}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <title> Django Sample Site - {% block title %}{% endblock %}</title>
 </head>
 
 <body>
-
+    {% include 'header.html' %}
 
     <div class="cards-container-one">
         <!-- {{product.stock}} -->
@@ -121,7 +122,7 @@
                         <li class="list-group-item red_flag">Out of Stock</li>
                         {% endif %}
                         <li class="list-group-item">
-                            <div class="add_to_cart">
+                            <div id="add_to_cart" class="add_to_cart">
                                 <label for="quantity">Quantity:</label>
                                 <select name="quantity" id="quantity">
                                     <option value="1">1</option>
@@ -157,7 +158,9 @@
                                 </select>
                             </div>
                             <div class="add_to_cart">
-                                <button type="button" class="btn btn-warning">Add To Cart</button>
+                                <button type="button" data-pname="{{product.name}}" data-image={{product.image}}
+                                    data-product_id={{product.id}} data-price={{product.price}} id="add-crt"
+                                    class="btn btn-warning">Add To Cart</button>
                                 <button type="button" class="btn btn-dark">Buy Now</button>
                             </div>
                         </li>
@@ -171,7 +174,7 @@
     <h3 class="ratings">Recommending Products with similiar Ratings </h3>
     <div class="cards-container-two">
         <div class="cards-container">
-            
+
             {% for dict_item in recommendedProductonRatings %}
             <!-- {{dict_item}} -->
             <a href="{% url 'productpage' id=dict_item.id userId=userId %}" data-item-id="{{dict_item.id}}">

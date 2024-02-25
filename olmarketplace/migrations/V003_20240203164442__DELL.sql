@@ -397,65 +397,377 @@ values(30,'bad',2, 4, 44);
 
 
 insert into products.product_comments(id, product_id, comment_id)
-values(1,1,1);
+values(31,1,31);
 insert into products.product_comments(id, product_id, comment_id)
-values(2,2,2);
+values(32,2,32);
 insert into products.product_comments(id, product_id, comment_id)
-values(3,3,3);
+values(33,3,33);
 insert into products.product_comments(id, product_id, comment_id)
-values(4,4,4);
+values(34,4,34);
 insert into products.product_comments(id, product_id, comment_id)
-values(5,5,5);
+values(35,5,35);
 insert into products.product_comments(id, product_id, comment_id)
-values(6,6,6);
+values(36,6,36);
 insert into products.product_comments(id, product_id, comment_id)
-values(7,7,7);
+values(37,7,37);
 insert into products.product_comments(id, product_id, comment_id)
-values(8,8,8);
+values(38,8,38);
 insert into products.product_comments(id, product_id, comment_id)
-values(9,9,9);
+values(39,9,39);
 insert into products.product_comments(id, product_id, comment_id)
-values(10,10,10);
+values(40,10,40);
 insert into products.product_comments(id, product_id, comment_id)
-values(11,11,11);
+values(41,11,41);
 insert into products.product_comments(id, product_id, comment_id)
-values(12,12,12);
+values(42,12,42);
 insert into products.product_comments(id, product_id, comment_id)
-values(13,13,13);
+values(43,13,43);
 insert into products.product_comments(id, product_id, comment_id)
-values(14,14,14);
+values(44,14,44);
 insert into products.product_comments(id, product_id, comment_id)
-values(15,15,15);
+values(45,15,45);
 insert into products.product_comments(id, product_id, comment_id)
-values(16,16,16);
+values(46,16,46);
 insert into products.product_comments(id, product_id, comment_id)
-values(17,17,17);
+values(47,17,47);
 insert into products.product_comments(id, product_id, comment_id)
-values(18,18,18);
+values(48,18,48);
 insert into products.product_comments(id, product_id, comment_id)
-values(19,19,19);
+values(49,19,49);
 insert into products.product_comments(id, product_id, comment_id)
-values(20,20,20);
+values(50,20,50);
 insert into products.product_comments(id, product_id, comment_id)
-values(21,1,21);
+values(51,1,51);
 insert into products.product_comments(id, product_id, comment_id)
-values(22,2,22);
+values(52,2,52);
 insert into products.product_comments(id, product_id, comment_id)
-values(23,3,23);
+values(53,3,53);
 insert into products.product_comments(id, product_id, comment_id)
-values(24,4,24);
+values(54,4,54);
 insert into products.product_comments(id, product_id, comment_id)
-values(25,5,25);
+values(55,5,55);
 insert into products.product_comments(id, product_id, comment_id)
-values(26,6,26);
+values(56,6,56);
 insert into products.product_comments(id, product_id, comment_id)
-values(27,7,27);
+values(57,7,57);
 insert into products.product_comments(id, product_id, comment_id)
-values(28,8,28);
+values(58,8,58);
 insert into products.product_comments(id, product_id, comment_id)
-values(29,9,29);
+values(59,9,59);
 insert into products.product_comments(id, product_id, comment_id)
-values(30,10,30);
+values(60,10,60);
+
+
+update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=1;
+
+update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=2;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=3;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=4;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=5;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=6;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=7;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=8;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=9;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=10;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=11;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=12;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=13;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=14;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=15;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=16;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=17;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=18;
+
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=19;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=20;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=21;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=22;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=23;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=24;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=25;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=26;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=27;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=28;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=29;
+
+ update products."comments" set text = 'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.' where id=30;
+
+
+insert into products."comments"(id, "text", likes, review, user_id)
+values(31,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',2, 4, 43);
+
+
+insert into products."comments"(id, "text", likes, review, user_id)
+values(32,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',2, 4, 43);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(33,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',12, 3, 44);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(34,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',22, 2, 45);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(35,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',32, 3, 46);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(36,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',42, 4, 47);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(37,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',12, 4, 43);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(38,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',12, 5, 44);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(39,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',42, 1, 45);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(40,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',62, 2, 46);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(41,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',27, 3, 47);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(42,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',28, 4, 43);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(43,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',29, 5, 44);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(44,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',22, 1, 45);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(45,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',3, 2, 46);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(46,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',6, 3, 47);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(47,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',7, 5, 43);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(48,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',8, 4, 44);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(49,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',9, 5, 45);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(50,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',10, 5, 46);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(51,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',11, 5, 47);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(52,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',1, 4, 43);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(53,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',3, 1, 44);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(54,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',4, 2, 45);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(55,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',6, 3, 46);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(56,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',9, 4, 47);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(57,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',32, 5, 47);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(58,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',33, 3, 43);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(59,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',2, 5, 44);
+insert into products."comments"(id, "text", likes, review, user_id)
+values(60,'Customers like the compatibility of the skin cleaning agent. 
+They mention that it is very good for all skin types, works amazing on all skin,
+ and is suitable for everyone. Some say that it perfectly suits their combination 
+ skin and prevents zits all year. Overall, most are happy with the product compatibility.',2, 4, 44);
+
+
+
+
+
+
 
 
 
